@@ -2,11 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { colors, responsiveStyle, text } from '@/app/theme.css';
 
 export const modal = style({
-  width: '100vw',
-  height: '100dvh',
-  display: 'flex',
-  position: 'relative',
   backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  position: 'absolute',
   top: 0,
   left: 0,
   right: 0,
@@ -52,6 +49,7 @@ export const subTitle = style([
 export const faceSection = style([
   {
     display: 'flex',
+    justifyContent: 'center',
     gap: '12px',
   },
   responsiveStyle({
@@ -79,6 +77,9 @@ export const faceSectionImage = style([
       height: 60,
     },
   }),
+  {
+    cursor: 'pointer',
+  },
 ]);
 
 export const faceSectionText = style([
@@ -154,6 +155,19 @@ export const submitButton = style([
   },
 ]);
 
+export const activeButton = style({
+  backgroundColor: colors['secondary-20'],
+  color: colors['gray-10'],
+  borderColor: colors['secondary-20'],
+
+  ':hover': {
+    backgroundColor: colors['secondary-30'],
+  },
+  ':active': {
+    backgroundColor: colors['secondary-30'],
+  },
+});
+
 export const closeButton = style([
   responsiveStyle({
     tablet: {
@@ -185,4 +199,16 @@ export const backButtonSection = style({
 
 export const backButton = style({
   cursor: 'pointer',
+});
+
+export const loading = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
