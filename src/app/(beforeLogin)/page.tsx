@@ -2,19 +2,38 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as styles from './mainTheme.css';
 
-import HeaderLogo from '@/../public/img/logo-header.png';
 import FooterLogo from '@/../public/img/logo-fotter.png';
 import Layer1 from '@/../public/img/layer1.png';
 import Layer2 from '@/../public/img/layer2.png';
 import Layer3 from '@/../public/img/layer3.png';
+import HeaderImage from '@/../public/img/header.png';
+
+import Message from '@/../public/img/message.png';
+import VisitedSectionSuspense from '@/app/(beforeLogin)/_component/VisitedSectionSuspense';
+import { Suspense } from 'react';
+import Loading from '@/app/(beforeLogin)/loading';
+import SearchForm from '@/app/(beforeLogin)/_component/SearchForm';
+import { searchSectionImage } from './mainTheme.css';
+import Header from '@/app/(beforeLogin)/_component/Header';
 
 export default function Main() {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <Image className={styles.headerImage} alt="headerLogo" src={HeaderLogo} />
-      </header>
-      <section></section>
+    <main>
+      <Header />
+      <section className={styles.searchSection}>
+        <article className={styles.searchSectionLayer}>
+          <div>
+            <h1 className={styles.searchSectionTitle}>우리 동네 야외 농구장 지도</h1>
+            <h3 className={styles.searchSectionContent}>길거리 농구 유목민들이여,</h3>
+            <h3 className={styles.searchSectionContent}>
+              <span>모두의 농구장</span>에서
+            </h3>
+            <h3 className={styles.searchSectionContent}>내 주변의 농구장을 찾아보거라.</h3>
+          </div>
+          <SearchForm />
+        </article>
+        <Image className={searchSectionImage} alt="header" src={HeaderImage} />
+      </section>
       <section className={styles.infoSection}>
         <article>
           <div className={styles.infoSectionLayer}>
@@ -53,9 +72,32 @@ export default function Main() {
       <aside className={styles.aside}>
         <div className={styles.asideImage} />
       </aside>
-      <section>방문자</section>
-      <section>피드백</section>
-      <footer></footer>
-    </div>
+      <Suspense fallback={<Loading />}>
+        <VisitedSectionSuspense />
+      </Suspense>
+      <section className={styles.feedbackSection}>
+        <h3 className={styles.feedbackSectionTitle}>모두의 농구장이 도움이 되었나요?</h3>
+        <p className={styles.feedbackSectionContent}>
+          모두의 농구장을 이용하시는 모든 분들의 의견은 <br />
+          서비스를 개선하는 데 도움이 됩니다.
+        </p>
+        <Image className={styles.feedbackSectionImage} src={Message} alt="message" />
+        <Link href={'/feedback'}>
+          <button className={styles.feedbackSectionButton} type="button" aria-label="big">
+            피드백 남기기
+          </button>
+        </Link>
+      </section>
+      <footer className={styles.footer}>
+        <div>
+          <Image className={styles.footerImage} src={FooterLogo} alt="footer" />
+          <p className={styles.footerText}>© 2023. Modubasketball. All rights reserved.</p>
+        </div>
+        <div className={styles.footerLayer}>
+          <p className={styles.footerText}>Tel &nbsp;&nbsp; 0507-0178-0372</p>
+          <p className={styles.footerText}>E-mail &nbsp;&nbsp; wonder.gwb@gmail.com</p>
+        </div>
+      </footer>
+    </main>
   );
 }

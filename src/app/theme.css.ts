@@ -1,5 +1,13 @@
-import { ComplexStyleRule, style, StyleRule, styleVariants } from '@vanilla-extract/css';
-import * as Text from '@/app/text.css';
+import { fontFaces } from '@/app/text.css';
+import { ComplexStyleRule, style, StyleRule } from '@vanilla-extract/css';
+
+export const responsiveStyle = ({ tablet, desktop }: { tablet: StyleRule; desktop: StyleRule }) => ({
+  '@media': {
+    '(max-width: 767px)': tablet,
+    'screen and (min-width: 768px)': tablet,
+    'screen and (min-width: 1024px)': desktop,
+  },
+});
 
 export const colors = {
   'brand-10': '#F8B099',
@@ -26,70 +34,116 @@ export const colors = {
   'gray-100': '#1A1A1A',
 };
 
-const space = {
-  none: '0px',
-  small: '4px',
-  medium: '8px',
-  large: '16px',
-  // etc.
-};
-
-const size = {
-  display: '40px',
-  headline: '28px',
-  'headline-small': '24px',
-  title: '20px',
-  'title-small': '18px',
-  body: '16px',
-  'body-small': '14px',
-  caption: '12px',
-};
-
-export const responsiveStyle = ({ tablet, desktop }: { tablet: StyleRule; desktop: StyleRule }) => ({
-  '@media': {
-    '(max-width: 768px)': tablet,
-    'screen and (min-width: 1024px)': desktop,
-  },
-});
-
-const base = {
-  lineHeight: '1.5',
-};
-
 export const text = {
   caption: {
-    ...base,
+    fontFamily: fontFaces.regular,
+    lineHeight: 1.5,
     fontSize: '12px',
-    fontFamily: Text.preRegular,
   },
   body: {
-    ...base,
+    fontFamily: fontFaces.regular,
+    lineHeight: 1.5,
     fontSize: '16px',
-    fontFamily: Text.preRegular,
   },
   display: {
-    ...base,
+    fontFamily: fontFaces.bold,
+    lineHeight: 1.5,
     fontSize: '40px',
-    fontFamily: Text.preBold,
   },
   headline: {
-    ...base,
+    fontFamily: fontFaces.semiBold,
+    lineHeight: 1.5,
     fontSize: '28px',
-    fontFamily: Text.preSemiBold,
   },
   subHeadline: {
-    ...base,
+    fontFamily: fontFaces.semiBold,
+    lineHeight: 1.5,
     fontSize: '24px',
-    fontFamily: Text.preSemiBold,
   },
   title: {
-    ...base,
+    fontFamily: fontFaces.semiBold,
+    lineHeight: 1.5,
     fontSize: '20px',
-    fontFamily: Text.preSemiBold,
   },
   subTitle: {
-    ...base,
+    fontFamily: fontFaces.regular,
+    lineHeight: 1.5,
     fontSize: '18px',
-    fontFamily: Text.preRegular,
   },
 };
+
+export const customShadow = style({
+  boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.15)',
+});
+
+export const customButtonLong = style([
+  customShadow,
+  responsiveStyle({
+    tablet: {
+      ...text.subTitle,
+      height: '60px',
+    },
+    desktop: {
+      ...text.subHeadline,
+      height: '72px',
+    },
+  }),
+  {
+    width: '100%',
+    cursor: 'pointer',
+    borderRadius: '10px',
+    outline: 'none',
+    border: 'none',
+  },
+]);
+
+export const customButtonMid = style([
+  customShadow,
+  text.title,
+  {
+    cursor: 'pointer',
+    borderRadius: '100px',
+    outline: 'none',
+    border: 'none',
+    width: '220px',
+    height: '60px',
+  },
+]);
+
+export const customInput = style([
+  text.subTitle,
+  responsiveStyle({
+    tablet: {
+      padding: '12px',
+    },
+    desktop: {
+      padding: '20px',
+    },
+  }),
+  {
+    color: colors['gray-100'],
+    backgroundColor: colors['gray-10'],
+    outline: 'none',
+    borderRadius: '10px',
+    width: '100%',
+    border: '1px solid',
+    borderColor: colors['gray-40'],
+
+    '::placeholder': {
+      color: colors['gray-50'],
+      fontFamily: fontFaces.semiBold,
+      fontSize: '18px',
+      lineHeight: 1.5,
+    },
+  },
+]);
+
+export const customModal = style({
+  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  zIndex: 51,
+});

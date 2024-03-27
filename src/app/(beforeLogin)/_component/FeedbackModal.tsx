@@ -5,7 +5,6 @@ import Image from 'next/image';
 import * as styles from './feedbackModalTheme.css';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import cx from 'classnames';
 
 import Face1Default from '@/../public/img/face-1-default.png';
 import Face2Default from '@/../public/img/face-2-default.png';
@@ -20,6 +19,8 @@ import Face5Pressed from '@/../public/img/face-5-pressed.png';
 
 import { spin } from '@/app/animation.css';
 import Ball from '@/../public/img/layer1.png';
+import BackButtonModal from '@/app/(beforeLogin)/_component/BackButtonModal';
+import SubmitButtonForm from '@/app/(beforeLogin)/_component/SubmitButtonForm';
 
 const face = [
   {
@@ -54,10 +55,6 @@ export default function FeedbackModal() {
   const [faceNum, setFaceNum] = useState(0);
   const localFace = face;
 
-  const onError = () => {
-    alert('전송 과정에서 오류가 발생하였습니다.');
-  };
-
   const mutation = useMutation({
     mutationFn: async (event: SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -82,7 +79,7 @@ export default function FeedbackModal() {
     onSuccess(response) {
       console.info(response);
 
-      // TODO 페이지 이동
+      router.replace('/success/feedback');
     },
     onError(error) {
       console.error(error);
@@ -107,11 +104,12 @@ export default function FeedbackModal() {
           <div className={styles.faceSection}>
             {localFace.map((v, index) => (
               <div className={styles.faceSectionItem} key={index}>
-                {faceNum === index + 1 ? (
-                  <Image className={styles.faceSectionImage} alt="face" src={v.pre} onClick={onFaceClick(index + 1)} />
-                ) : (
-                  <Image className={styles.faceSectionImage} alt="face" src={v.def} onClick={onFaceClick(index + 1)} />
-                )}
+                <Image
+                  className={styles.faceSectionImage}
+                  alt="face"
+                  src={faceNum === index + 1 ? v.pre : v.def}
+                  onClick={onFaceClick(index + 1)}
+                />
                 <div className={styles.faceSectionText}>{v.text}</div>
               </div>
             ))}
@@ -125,29 +123,9 @@ export default function FeedbackModal() {
               rows={3}
             />
           </div>
-          <div className={styles.buttonSection}>
-            <button
-              className={cx(styles.submitButton, faceNum !== 0 && styles.activeButton)}
-              type="submit"
-              disabled={faceNum === 0}
-            >
-              보내기
-            </button>
-            <button className={styles.closeButton} type="button" onClick={onClickBack}>
-              취소하기
-            </button>
-          </div>
+          <SubmitButtonForm isActive={faceNum !== 0} text="보내기" />
         </form>
-        <div className={styles.backButtonSection}>
-          <Image
-            className={styles.backButton}
-            onClick={onClickBack}
-            alt="close"
-            src="svg/close.svg"
-            width={24}
-            height={24}
-          />
-        </div>
+        <BackButtonModal />
         {mutation.isPending && (
           <div className={styles.loading}>
             <Image className={spin} src={Ball} alt="ball" />

@@ -1,7 +1,5 @@
-import { redirect } from 'next/navigation';
+import AddModal from '@/app/(beforeLogin)/@modal/(.)map/_component/AddModal';
 
 export default function Page() {
-  redirect('/home');
-
-  return null;
+  return <AddModal />;
 }
