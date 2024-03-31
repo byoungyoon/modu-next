@@ -14,7 +14,7 @@ export default function RQProvider({ children }: Props) {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
-          refetchOnMount: false,
+          refetchOnMount: true,
           refetchOnReconnect: false,
           retry: false,
         },

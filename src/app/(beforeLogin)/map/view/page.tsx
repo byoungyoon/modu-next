@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import Loading from '@/app/(beforeLogin)/loading';
 import BasicMapSuspense from '@/app/(beforeLogin)/map/view/_component/BasicMapSuspense';
 import * as styles from '@/app/(beforeLogin)/map/mapTheme.css';
 import SearchInput from '@/app/(beforeLogin)/map/view/_component/SearchInput';
@@ -8,11 +7,12 @@ import Image from 'next/image';
 import Feedback from '@/../public/svg/feedback.svg';
 import LocationButton from '@/app/(beforeLogin)/map/view/_component/LocationButton';
 import AddButton from '@/app/(beforeLogin)/map/view/_component/AddButton';
+import MapLoading from '@/app/(beforeLogin)/map/loading';
 
 export default function Page() {
   return (
     <>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<MapLoading />}>
         <BasicMapSuspense />
       </Suspense>
       <article className={styles.searchLayer}>

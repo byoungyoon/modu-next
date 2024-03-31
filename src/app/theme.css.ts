@@ -135,6 +135,11 @@ export const customInput = style([
       fontSize: '18px',
       lineHeight: 1.5,
     },
+
+    ':read-only': {
+      pointerEvents: 'none',
+      userSelect: 'none',
+    },
   },
 ]);
 

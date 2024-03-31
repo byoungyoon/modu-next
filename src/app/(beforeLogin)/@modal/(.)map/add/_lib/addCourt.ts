@@ -1,14 +1,21 @@
 'use server';
 
-export default async (prevState: any, formData: FormData) => {
+export default async (prevState: { success: boolean; redirect?: string } | null, formData: FormData) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/court`, {
       method: 'post',
       body: formData,
       credentials: 'include',
     });
+
+    return {
+      success: true,
+      redirect: '/success/add',
+    };
   } catch (err) {
     console.error(err);
-    return null;
+    return {
+      success: false,
+    };
   }
 };

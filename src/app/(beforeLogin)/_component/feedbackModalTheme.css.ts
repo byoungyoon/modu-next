@@ -133,4 +133,6 @@ export const loading = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+
+  zIndex: 100,
 });

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 export default function Page() {
-  redirect('/map/view');
+  redirect(`/map/view`);
 
   return null;
 }

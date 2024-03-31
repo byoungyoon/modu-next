@@ -38,10 +38,23 @@ export default function BasicMapManager() {
   }, [managerRef.current]);
 
   useEffect(() => {
-    if (isClick && managerRef.current) {
+    if (isClick !== 0 && managerRef.current) {
       const marker = managerRef.current?.getData().marker[0];
-      setData(marker.y, marker.x);
-      router.replace('/map/add');
+
+      const geoCoder = new kakao.maps.services.Geocoder();
+      geoCoder.coord2Address(marker.x, marker.y, (result) => {
+        if (result.length === 0) {
+          console.error('위치를 지원할 수 없는 곳입니다.');
+          return;
+        }
+
+        setData(
+          marker.y,
+          marker.x,
+          result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name,
+        );
+        router.replace('/map/add');
+      });
     }
   }, [isClick]);
 

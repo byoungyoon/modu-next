@@ -4,6 +4,7 @@ import { MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import { useQuery } from '@tanstack/react-query';
 import { Court } from '@/app/model/court';
 import { getCourt } from '@/app/(beforeLogin)/map/_lib/getCourt';
+import { useRouter } from 'next/navigation';
 
 export default function BasicMapDataMarker() {
   const { data: courts } = useQuery<Court[]>({
@@ -13,8 +14,10 @@ export default function BasicMapDataMarker() {
     gcTime: 30 * 1000 * 5,
   });
 
-  const onMarkerClick = (id: number) => () => {
-    console.log(id);
+  const router = useRouter();
+
+  const onMarkerClick = (id: string) => () => {
+    router.push(`/map/detail/${id}`);
   };
 
   return (
@@ -26,7 +29,7 @@ export default function BasicMapDataMarker() {
             lat: court.lat,
             lng: court.lon,
           }}
-          onClick={onMarkerClick(court.id)}
+          onClick={onMarkerClick(`${court.id}`)}
           image={{
             src: '/img/marker.png',
             size: {

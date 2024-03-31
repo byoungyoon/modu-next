@@ -11,7 +11,6 @@ import HeaderImage from '@/../public/img/header.png';
 import Message from '@/../public/img/message.png';
 import VisitedSectionSuspense from '@/app/(beforeLogin)/_component/VisitedSectionSuspense';
 import { Suspense } from 'react';
-import Loading from '@/app/(beforeLogin)/loading';
 import SearchForm from '@/app/(beforeLogin)/_component/SearchForm';
 import { searchSectionImage } from './mainTheme.css';
 import Header from '@/app/(beforeLogin)/_component/Header';
@@ -72,7 +71,7 @@ export default function Main() {
       <aside className={styles.aside}>
         <div className={styles.asideImage} />
       </aside>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div>loading...</div>}>
         <VisitedSectionSuspense />
       </Suspense>
       <section className={styles.feedbackSection}>

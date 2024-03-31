@@ -1,11 +1,5 @@
-import {
-  assignVars,
-  createGlobalTheme,
-  createGlobalThemeContract,
-  globalFontFace,
-  globalStyle,
-  StyleRule,
-} from '@vanilla-extract/css';
+import { assignVars, createGlobalTheme, createGlobalThemeContract, globalStyle, style } from '@vanilla-extract/css';
+import * as Theme from './theme.css';
 
 export const global = createGlobalThemeContract({
   background: {
@@ -61,3 +55,49 @@ globalStyle('a', {
   color: 'inherit',
   textDecoration: 'none',
 });
+
+export const container = style({
+  height: '100dvh',
+  position: 'relative',
+});
+
+export const layer = style({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+});
+
+export const title404 = style({
+  fontSize: '186px',
+  fontWeight: 900,
+  margin: 0,
+  textTransform: 'uppercase',
+  background: 'url(/img/text.png)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  color: 'transparent',
+});
+
+export const subTitle404 = style([
+  Theme.text.title,
+  {
+    marginTop: '10px',
+  },
+]);
+
+export const body404 = style([
+  Theme.text.body,
+  {
+    marginTop: '5px',
+  },
+]);
+
+export const button404 = style([
+  Theme.text.subTitle,
+  {
+    color: Theme.colors['secondary-30'],
+  },
+]);

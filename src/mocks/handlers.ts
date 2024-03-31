@@ -39,4 +39,24 @@ export const handlers = [
       },
     );
   }),
+  http.get('/api/court/:id', async ({ params }) => {
+    await delay(3000);
+
+    const { id } = params;
+
+    const find = Court.find((court) => court.id && `${court.id}` === id)!;
+    return HttpResponse.json(find);
+  }),
+  http.post('/api/court/update', async () => {
+    await delay(2000);
+
+    return HttpResponse.json(
+      {
+        message: '/api/court/update success',
+      },
+      {
+        status: 200,
+      },
+    );
+  }),
 ];

@@ -11,9 +11,11 @@ type Props = {
 
   defaultValue?: string;
   onTrackable?: (key: string) => void;
+
+  readonly?: boolean;
 };
 
-export default function CheckBoxGroup({ data, defaultValue = '', onTrackable = () => {} }: Props) {
+export default function CheckBoxGroup({ data, defaultValue = '', onTrackable = () => {}, readonly }: Props) {
   const [localChecked, setLocalChecked] = useState(defaultValue);
 
   const onClick = (key: string) => () => {
@@ -24,7 +26,7 @@ export default function CheckBoxGroup({ data, defaultValue = '', onTrackable = (
   return (
     <article className={styles.container}>
       {data.map((datum) => (
-        <div key={datum} className={styles.layer} onClick={onClick(datum)}>
+        <div key={datum} className={cx(styles.layer, readonly && styles.layerReadonly)} onClick={onClick(datum)}>
           <input
             className={cx(styles.layerInput, localChecked === datum && styles.layerInputChecked)}
             type="text"

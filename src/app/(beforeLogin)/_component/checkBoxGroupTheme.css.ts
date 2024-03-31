@@ -10,6 +10,11 @@ export const layer = style({
   justifyContent: 'center',
   alignItems: 'center',
   cursor: 'pointer',
+  userSelect: 'none',
+});
+
+export const layerReadonly = style({
+  pointerEvents: 'none',
 });
 
 export const layerInput = style([

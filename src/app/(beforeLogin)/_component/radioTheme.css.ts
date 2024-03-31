@@ -11,6 +11,10 @@ export const radioBox = style([
   },
 ]);
 
+export const radioBoxReadonly = style({
+  pointerEvents: 'none',
+});
+
 export const radio = style({
   display: 'none',
 });
