@@ -6,7 +6,7 @@ import { handlers } from '@/mocks/handlers';
 const app = express();
 const port = 9090;
 
-app.use(cors({ origin: `${process.env.NEXT_PUBLIC_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+app.use(cors({ origin: `${process.env.NEXT_PUBLIC_BASE_NEXT_URL}`, optionsSuccessStatus: 200, credentials: true }));
 app.use(express.json());
 app.use(createMiddleware(...handlers));
 
