@@ -91,10 +91,6 @@ export default function FeedbackModal() {
     setFaceNum(faceNum === num ? 0 : num);
   };
 
-  const onClickBack = () => {
-    router.back();
-  };
-
   return (
     <div className={styles.modal}>
       <article className={styles.container}>

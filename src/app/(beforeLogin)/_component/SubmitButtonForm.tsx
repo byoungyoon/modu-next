@@ -19,8 +19,6 @@ export default function SubmitButtonForm({ isActive = true, text }: Props) {
     router.back();
   };
 
-  console.log(pending, isActive);
-
   return (
     <div className={styles.buttonSection}>
       <button
