@@ -1,5 +1,4 @@
 import { Court as ICourt } from '@/app/model/court';
-import { faker } from '@faker-js/faker';
 
 export const Court: ICourt[] = [
   {
