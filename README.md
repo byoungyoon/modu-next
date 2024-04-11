@@ -1,22 +1,17 @@
 ## 모두의 농구장 (Next 버젼)
 > React로 베포된 모두의 농구장을 혼자서 MSW로 연결하여 Next로 리펙토링
----
 
 
-![283007470-af370471-9138-4f20-844d-43ada13e7c84.png](..%2F..%2FDesktop%2Fimg%2F283007470-af370471-9138-4f20-844d-43ada13e7c84.png)
+![readme.png](./public/img/readme.png)
 - 베포 URL: http://43.201.82.253:3000/
 
 ### 프로텍트 소개
-
----
 
 - 모두의 농구장은 지도 상에서 잘 표시되지 않는 농구장을 공유하고, 찾는 서비스입니다.
 - 자신이 원하는 위치의 농구장을 등록, 수정이 가능합니다.
 - 현재 위치를 기반으로 검색가능하고 원하는 지역을 기반으로도 검색 가능합니다.
 
 ### 개발  환경
-
----
 
 - Front: Next.js (14.x), vanilla extract, zustand, react-query, MSW (Back 대신 사용)
 - 배포: AWS Lightsail
@@ -28,7 +23,6 @@ msw: npm run mock
 
 ### 프로젝트 구조
 
----
 > App Router
 
 ```bash
@@ -76,8 +70,6 @@ msw: npm run mock
 
 ### 채택한 개발 및 신경 쓴 부분
 
----
-
 #### Next.js
 
 - Next는 14버젼을 활용하였고 App Router를 기반으로 폴더를 구성하였습니다.
@@ -114,8 +106,6 @@ msw: npm run mock
 - useQuery, useMutation 등의 react-query에서 제공되는 훅을 사용하였습니다.
 
 ### 후기
-
----
 
 전 코드에 대해서 리펙토링을 하게 된 이유는 총 3가지였습니다. 
 
